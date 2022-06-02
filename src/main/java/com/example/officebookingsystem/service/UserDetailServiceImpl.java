@@ -1,8 +1,10 @@
-package com.example.officebookingsystem.security.service;
+package com.example.officebookingsystem.service;
 
 import com.example.officebookingsystem.domain.entity.User;
+import com.example.officebookingsystem.domain.implement.UserDetailImpl;
 import com.example.officebookingsystem.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,4 +22,5 @@ public class UserDetailServiceImpl implements UserDetailsService {
                 .orElseThrow(()->new UsernameNotFoundException("User Not Found with email: " + email));
         return UserDetailImpl.build(user);
     }
+    
 }
