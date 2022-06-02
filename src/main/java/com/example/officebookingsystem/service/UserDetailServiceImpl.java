@@ -22,6 +22,5 @@ public class UserDetailServiceImpl implements UserDetailsService {
                 .orElseThrow(()->new UsernameNotFoundException("User Not Found with email: " + email));
         return UserDetailImpl.build(user);
     }
-
-    public ResponseEntity
+    
 }
