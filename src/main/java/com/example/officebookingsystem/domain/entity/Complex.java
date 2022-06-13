@@ -24,7 +24,7 @@ public class Complex {
         @ManyToOne
         @JoinColumn(name = "city_id")
         private City city;
-
+        
         @ManyToOne
         @JoinColumn(name = "district_id")
         private District district;
