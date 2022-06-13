@@ -3,13 +3,12 @@ package com.example.officebookingsystem.domain.dto.response;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-@Data
 @AllArgsConstructor
+@Data
 @NoArgsConstructor
-
-public class UserPageResponse {
-    private String complexName;
-    private String address;
+public class CityResponse {
     private String name;
+    private Long id;
+
+
 }
