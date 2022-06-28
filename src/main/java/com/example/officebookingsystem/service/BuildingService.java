@@ -82,7 +82,6 @@ public class BuildingService {
                 "Building Updated Successfully", buildingRepository.save(building)));
     }
 
-
     public ResponseEntity<?> deleteOne(Long id) {
         if (buildingRepository.existsById(id) == false) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)

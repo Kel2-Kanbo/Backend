@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +33,8 @@ public class BuildingController {
 
     // Create buildings
     @ApiOperation(value = "Create Building", notes = "Endpoint for creating building")
-    @PostMapping("/admin/building/create")
+    @PostMapping(value = "/admin/building/create", consumes = { MediaType.APPLICATION_JSON_VALUE,
+            MediaType.MULTIPART_FORM_DATA_VALUE })
     // @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ResponseData<Building>> createBuilding(@Valid @RequestBody BuildingRequest buildingRequest) {
         return buildingService.create(buildingRequest);
