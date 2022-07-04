@@ -15,5 +15,5 @@ public class UserAllBuildingResponse {
     private String address;
     private String description;
     private List<Facility> nerby_facilities;
-    // private boolean available_rooms;
+    private boolean available_rooms;
 }

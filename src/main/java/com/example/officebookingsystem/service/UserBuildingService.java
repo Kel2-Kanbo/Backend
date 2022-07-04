@@ -1,6 +1,5 @@
 package com.example.officebookingsystem.service;
 
-import com.example.officebookingsystem.domain.dto.response.ResponseData;
 import com.example.officebookingsystem.domain.dto.response.UserAllBuildingResponse;
 import com.example.officebookingsystem.domain.dto.response.UserResponseBuilding;
 import com.example.officebookingsystem.domain.entity.Building;
@@ -9,6 +8,7 @@ import com.example.officebookingsystem.domain.entity.Facility;
 import com.example.officebookingsystem.domain.repository.BuildingRepository;
 import com.example.officebookingsystem.domain.repository.CityRepository;
 import com.example.officebookingsystem.domain.repository.FacilityRepository;
+import com.example.officebookingsystem.domain.repository.RoomRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +29,9 @@ public class UserBuildingService {
 
     @Autowired
     private FacilityRepository facilityRepository;
+
+    @Autowired
+    private RoomRepository roomRepository;
 
     public ResponseEntity<List<UserResponseBuilding>> getAllBuildingsByCity(Long id) {
         Optional<City> city = cityRepository.findById(id);
@@ -57,6 +60,10 @@ public class UserBuildingService {
             List<Facility> facility = facilityRepository.findFacilityByBuidling(b.getId());
             if (!facility.isEmpty()) {
                 urb.setNerby_facilities(facility);
+            }
+            Boolean avalibleRooms = roomRepository.existRoomByBuilding(b.getId());
+            if (avalibleRooms) {
+                urb.setAvailable_rooms(avalibleRooms);
             }
         }
         return ResponseEntity.status(HttpStatus.OK).body(userAllBuildingResponses);

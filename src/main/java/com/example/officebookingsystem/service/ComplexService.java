@@ -1,9 +1,8 @@
 package com.example.officebookingsystem.service;
-import com.example.officebookingsystem.domain.dto.request.BuildingRequest;
+
 import com.example.officebookingsystem.domain.dto.request.ComplexCreateRequest;
 import com.example.officebookingsystem.domain.dto.response.ComplexResponse;
 import com.example.officebookingsystem.domain.dto.response.MessageResponse;
-import com.example.officebookingsystem.domain.entity.Building;
 import com.example.officebookingsystem.domain.entity.City;
 import com.example.officebookingsystem.domain.entity.Complex;
 import com.example.officebookingsystem.domain.entity.District;
@@ -35,13 +34,13 @@ public class ComplexService {
     @Autowired
     private BuildingRepository buildingRepository;
 
-
-    public ResponseEntity<ComplexCreateRequest> createComplex(ComplexCreateRequest complexCreateRequest){
+    public ResponseEntity<ComplexCreateRequest> createComplex(ComplexCreateRequest complexCreateRequest) {
         Optional<City> optionalCity = cityRepository.findById(complexCreateRequest.getCity_id());
         Optional<District> optionalDistrict = districtRepository.findById(complexCreateRequest.getDistrict_id());
 
-        if(complexRepository.existsByComplexName(complexCreateRequest.getComplex_name())){
-            // String errorResponse = String.format("Complex with the name %s is already taken", complexCreateRequest.getComplex_name());
+        if (complexRepository.existsByComplexName(complexCreateRequest.getComplex_name())) {
+            // String errorResponse = String.format("Complex with the name %s is already
+            // taken", complexCreateRequest.getComplex_name());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
 
@@ -54,10 +53,10 @@ public class ComplexService {
         return ResponseEntity.status(HttpStatus.CREATED).body(complexCreateRequest);
     }
 
-    public ResponseEntity<List<ComplexResponse>> listComplex(){
+    public ResponseEntity<List<ComplexResponse>> listComplex() {
         List<Complex> complexList = complexRepository.findAll();
         List<ComplexResponse> complexResponseList = new ArrayList<>();
-        for(Complex c : complexList ){
+        for (Complex c : complexList) {
             ComplexResponse complexResponse = new ComplexResponse();
             complexResponse.setComplex_name(c.getComplexName());
             complexResponse.setAddress(c.getAddress());
@@ -65,23 +64,24 @@ public class ComplexService {
             complexResponse.setDistrict_name(c.getDistrict().getName());
             complexResponse.setId(c.getId());
             Integer numOfBuildings = buildingRepository.countByComplex(c);
-            if(numOfBuildings!= null){
+            if (numOfBuildings != null) {
                 complexResponse.setNumOfBuilding(numOfBuildings);
             }
 
             complexResponseList.add(complexResponse);
         }
 
-        if(complexList.isEmpty()){
+        if (complexList.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(complexResponseList);
     }
 
-    public ResponseEntity<?> deleteById(Long id){
-        if(complexRepository.existsById(id)== false){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse("ERROR : building with " + id + "doesn't exists"));
+    public ResponseEntity<?> deleteById(Long id) {
+        if (complexRepository.existsById(id) == false) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new MessageResponse("ERROR : building with " + id + "doesn't exists"));
         }
         complexRepository.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Complex successfully created"));

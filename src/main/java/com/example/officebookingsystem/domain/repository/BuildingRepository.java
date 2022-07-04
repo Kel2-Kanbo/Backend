@@ -1,6 +1,5 @@
 package com.example.officebookingsystem.domain.repository;
 
-import com.example.officebookingsystem.domain.dto.response.UserAllBuildingResponse;
 import com.example.officebookingsystem.domain.dto.response.UserResponseBuilding;
 import com.example.officebookingsystem.domain.entity.Building;
 
@@ -21,7 +20,7 @@ public interface BuildingRepository extends JpaRepository<Building, Long> {
 
     // Find building by complex id
     @Query("SELECT building FROM Building building WHERE building.complex.id = :id")
-    List<Building> findByComplexId(Long id);
+    List<Building> findByComplexId(@Param("id") Long id);
 
     @Query(value = "SELECT new com.example.officebookingsystem.domain.dto.response.UserResponseBuilding(b.id, b.name, s.name, b.address )"
             +
