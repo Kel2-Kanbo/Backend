@@ -1,6 +1,7 @@
 package com.example.officebookingsystem.controller;
 
 import com.example.officebookingsystem.domain.dto.response.ResponseData;
+import com.example.officebookingsystem.domain.dto.response.UserAllBuildingResponse;
 import com.example.officebookingsystem.domain.dto.response.UserResponseBuilding;
 import com.example.officebookingsystem.service.UserBuildingService;
 import io.swagger.annotations.Api;
@@ -20,14 +21,18 @@ public class UserBuildingController {
     @Autowired
     private UserBuildingService userBuildingService;
 
+    @GetMapping("/list")
+    @ApiOperation(value = "List All Building", notes = "Endpont for Listing All Builings")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public ResponseEntity<List<UserAllBuildingResponse>> listBuildings() {
+        return userBuildingService.getAllBuildings();
+    }
+
     @GetMapping("/list/{id}")
     @ApiOperation(value = "List Building", notes = "Endpoint for Listing all Building by City Id")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<List<UserResponseBuilding>> listBuilding(@PathVariable("id") Long id){
-        return userBuildingService.getAllBuildingsById(id);
+    public ResponseEntity<List<UserResponseBuilding>> listBuildingByCity(@PathVariable("id") Long id) {
+        return userBuildingService.getAllBuildingsByCity(id);
     }
-
-
-
 
 }
