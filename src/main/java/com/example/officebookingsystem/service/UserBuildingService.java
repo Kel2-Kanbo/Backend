@@ -5,6 +5,7 @@ import com.example.officebookingsystem.domain.dto.response.UserResponseBuilding;
 import com.example.officebookingsystem.domain.entity.Building;
 import com.example.officebookingsystem.domain.entity.City;
 import com.example.officebookingsystem.domain.entity.Facility;
+import com.example.officebookingsystem.domain.entity.Room;
 import com.example.officebookingsystem.domain.repository.BuildingRepository;
 import com.example.officebookingsystem.domain.repository.CityRepository;
 import com.example.officebookingsystem.domain.repository.FacilityRepository;
@@ -61,8 +62,8 @@ public class UserBuildingService {
             if (!facility.isEmpty()) {
                 urb.setNerby_facilities(facility);
             }
-            Boolean avalibleRooms = roomRepository.existRoomByBuilding(b.getId());
-            if (avalibleRooms) {
+            List<Room> avalibleRooms = roomRepository.existRoomByBuilding(b.getId());
+            if (avalibleRooms.size() > 0) {
                 urb.setAvailable_rooms(avalibleRooms);
             }
         }

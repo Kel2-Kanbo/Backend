@@ -1,5 +1,7 @@
 package com.example.officebookingsystem.domain.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,6 +16,6 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
     Integer countByBuilding(Building building);
 
     @Query("SELECT room FROM Room room WHERE room.building.id = :id")
-    boolean existRoomByBuilding(@Param("id") Long id);
+    List<Room> existRoomByBuilding(@Param("id") Long id);
 
 }

@@ -3,6 +3,7 @@ package com.example.officebookingsystem.domain.dto.response;
 import java.util.List;
 
 import com.example.officebookingsystem.domain.entity.Facility;
+import com.example.officebookingsystem.domain.entity.Room;
 
 import lombok.Data;
 
@@ -15,5 +16,5 @@ public class UserAllBuildingResponse {
     private String address;
     private String description;
     private List<Facility> nerby_facilities;
-    private boolean available_rooms;
+    private List<Room> available_rooms;
 }
