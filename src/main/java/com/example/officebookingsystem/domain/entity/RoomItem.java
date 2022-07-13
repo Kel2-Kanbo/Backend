@@ -27,6 +27,4 @@ public class RoomItem {
     private String description;
 
     private Integer quantity;
-
-
 }

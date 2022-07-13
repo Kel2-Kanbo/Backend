@@ -26,7 +26,4 @@ public class UserBuildingController {
         return userBuildingService.getAllBuildingsById(id);
     }
 
-
-
-
 }

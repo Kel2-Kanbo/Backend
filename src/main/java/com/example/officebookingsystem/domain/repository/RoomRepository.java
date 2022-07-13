@@ -11,4 +11,6 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
     // count by building
     Integer countByBuilding(Building building);
 
+    boolean existByName(String name);
+
 }

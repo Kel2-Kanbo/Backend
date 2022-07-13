@@ -25,6 +25,8 @@ public class RoomSpecification {
 
     private String dest_type;
 
+    private Integer large;
+
     public Room getRoom() {
         return room;
     }
