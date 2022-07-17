@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoomItemRequest {
-    private String roomItem;
+    private String itemName;
     private Integer quantity;
 }

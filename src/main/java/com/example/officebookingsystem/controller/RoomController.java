@@ -23,11 +23,11 @@ public class RoomController {
     @Autowired
     private RoomItemService roomItemService;
 
+    //Create room
     @ApiOperation(value = "Create room", notes = "Endpoint for admin creating the room")
     @PostMapping("/admin/room/create")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> createRoom(@Valid @RequestBody
-                                        RoomCreateRequest roomCreateRequest){
+    public ResponseEntity<?> createRoom(@Valid @RequestBody RoomCreateRequest roomCreateRequest){
         return roomService.create(roomCreateRequest);
     }
 }

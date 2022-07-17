@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @Data
 @Table(name = "buildings", uniqueConstraints = {
-                @UniqueConstraint(columnNames = "name")
+                @UniqueConstraint       (columnNames = "name")
 })
 public class Building {
         @Id

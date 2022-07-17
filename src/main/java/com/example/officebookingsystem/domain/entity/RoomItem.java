@@ -24,7 +24,7 @@ public class RoomItem {
     @NotBlank
     private Double price;
 
-    private String description;
-
+    //private String description;
+    private String itemName;
     private Integer quantity;
 }

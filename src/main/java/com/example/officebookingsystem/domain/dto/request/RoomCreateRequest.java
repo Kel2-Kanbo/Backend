@@ -1,5 +1,7 @@
 package com.example.officebookingsystem.domain.dto.request;
 
+import com.example.officebookingsystem.domain.entity.Room;
+import com.example.officebookingsystem.domain.entity.RoomSpecification;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,11 +14,16 @@ import java.util.List;
 @NoArgsConstructor
 public class RoomCreateRequest {
     private String roomName;
-    private Long building_id;
+    private String building_name;
     private String description;
+    private Double pricePerHour;
+    private String room_image;
+    private Integer floor;
+    private Integer capacity;
+    private Integer large;
     private List<RoomItemRequest> items;
-    private Double price;
-    private String image;
+
+
 
 
 }
