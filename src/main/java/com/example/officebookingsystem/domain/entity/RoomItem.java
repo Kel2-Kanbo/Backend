@@ -17,6 +17,9 @@ public class RoomItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "item_name")
+    private String itemName;
+
     @ManyToOne
     @JoinColumn(name = "room_id")
     private Room room;
@@ -27,6 +30,5 @@ public class RoomItem {
     private String description;
 
     private Integer quantity;
-
 
 }
